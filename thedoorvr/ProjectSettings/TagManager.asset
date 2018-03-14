@@ -6,6 +6,9 @@ TagManager:
   tags:
   - KeyCard
   - Item
+  - FxTemporaire
+  - projectile
+  - TeleportIgnore
   layers:
   - Default
   - TransparentFX
@@ -16,7 +19,7 @@ TagManager:
   - 
   - 
   - cloudScene
-  - 
+  - StereoRender_Ignore
   - 
   - 
   - 
