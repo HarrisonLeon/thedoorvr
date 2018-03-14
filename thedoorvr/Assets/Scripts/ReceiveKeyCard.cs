@@ -25,6 +25,8 @@ public class ReceiveKeyCard : MonoBehaviour {
             Destroy(other.gameObject);
 
 			KeyCard keyCard = other.gameObject.GetComponent<KeyCard>();
+
+			StateManager.instance.NextState();
 			int keyCardNumber = keyCard.cardIndex;
 			Debug.Log("<color=green>Collision:</color> Received Key Card " + keyCardNumber);
         }
