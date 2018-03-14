@@ -6,6 +6,8 @@ using VRTK;
 
 public class StateManager : MonoBehaviour {
 
+	public GameObject Mug;
+
 	// Static instance of GameManager which allows it to be accessed by any other script.
 	public static StateManager instance = null;
 
@@ -49,6 +51,8 @@ public class StateManager : MonoBehaviour {
 		foreach (Item item in mItems) {
 			item.Disable();
 		}
+
+		Mug.SetActive (false);
 	}
 	
 	//Update is called every frame.
@@ -79,7 +83,7 @@ public class StateManager : MonoBehaviour {
 	}
 
 	void EndGame() {
-
+		Mug.SetActive (true);
 	}
 
 }

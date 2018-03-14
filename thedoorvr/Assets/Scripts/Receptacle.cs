@@ -45,10 +45,12 @@ public class Receptacle : MonoBehaviour {
 			if (receivedItem.itemType == Item.ItemType.DummyItem) {
 				// reset the current state
 				other.transform.parent = transform;
+				Destroy (other.gameObject);
 			}
 			else if (receivedItem.itemType == Item.ItemType.KeyItem) {
 				// move onto the next state
 				other.transform.parent = transform;
+				Destroy (other.gameObject);
 				StateManager.instance.ActivateNextCard();
 			}
         }
