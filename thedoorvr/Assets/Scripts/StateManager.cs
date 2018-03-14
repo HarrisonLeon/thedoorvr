@@ -7,12 +7,14 @@ using VRTK;
 public class StateManager : MonoBehaviour {
 
 	// Static instance of GameManager which allows it to be accessed by any other script.
-	public static StateManager instance = null;              
+	public static StateManager instance = null;
 
 	// Current state the game is in, also the num of cards completed
 	private int mState;
 	
 	[SerializeField] private KeyCard[] mCards;
+	[SerializeField] private Vector3[] mDoorLocations;
+	[SerializeField] private Item[] mItems;
 
 	/// <summary>
 	/// Awake is called when the script instance is being loaded.
@@ -43,6 +45,10 @@ public class StateManager : MonoBehaviour {
 		for (int i = 1; i < mCards.Length; ++i) {
 			mCards[i].Disable();
 		}
+
+		foreach (Item item in mItems) {
+			item.Disable();
+		}
 	}
 	
 	//Update is called every frame.
@@ -50,7 +56,18 @@ public class StateManager : MonoBehaviour {
 		
 	}
 
-	public void NextState() {
+	public void ActivateRoom() {
+		// Vector3 nextLocation = mDoorLocations[mState];
+
+		foreach (Item item in mItems) {
+			if (item.itemGroupIndex == mState) {
+				item.Enable();
+			}
+		}
+
+	}
+
+	public void ActivateNextCard() {
 		++mState;
 		// reached last state in the game
 		if (mState >= mCards.Length) {
