@@ -24,7 +24,14 @@ public class Receptacle : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
 		if (myReceptacleType == ReceptacleType.CardReader && other.gameObject.tag == "KeyCard") {
-			// Destroy(other.gameObject);
+			other.gameObject.GetComponent<KeyCard>().Detach();
+			other.gameObject.GetComponent<KeyCard>().MakeNoLongerNeeded();
+			
+			// transform to put in slot properly
+			other.transform.parent = transform;
+			other.transform.localPosition = new Vector3(0.0521f, 0.1512f, 0f);
+			other.transform.localRotation = Quaternion.Euler(0f, 0f, 97.16f);
+			other.transform.localScale = new Vector3(0.104f, 0.006f, 0.0887f);
 
 			KeyCard keyCard = other.gameObject.GetComponent<KeyCard>();
 
@@ -37,13 +44,14 @@ public class Receptacle : MonoBehaviour {
 			Item receivedItem = other.gameObject.GetComponent<Item>();
 			if (receivedItem.itemType == Item.ItemType.DummyItem) {
 				// reset the current state
-				Destroy(other.gameObject);
+				other.transform.parent = transform;
 			}
 			else if (receivedItem.itemType == Item.ItemType.KeyItem) {
 				// move onto the next state
-				Destroy(other.gameObject);
+				other.transform.parent = transform;
 				StateManager.instance.ActivateNextCard();
 			}
         }
 	}
 }
+
