@@ -17,6 +17,10 @@ public class StateManager : MonoBehaviour {
 	[SerializeField] private KeyCard[] mCards;
 	[SerializeField] private Vector3[] mDoorLocations;
 	[SerializeField] private Item[] mItems;
+	[SerializeField] private Transform[] mPortalTransforms;
+	[SerializeField] private Transform mCurrentPortalTransform;
+	[SerializeField] private GameObject mPortalObject;
+
 
 	/// <summary>
 	/// Awake is called when the script instance is being loaded.
@@ -52,7 +56,9 @@ public class StateManager : MonoBehaviour {
 			item.Disable();
 		}
 
+
 		Mug.SetActive (false);
+		mPortalObject.SetActive (false);
 	}
 	
 	//Update is called every frame.
@@ -61,8 +67,9 @@ public class StateManager : MonoBehaviour {
 	}
 
 	public void ActivateRoom() {
+		mCurrentPortalTransform = mPortalTransforms [mState];
+		mPortalObject.SetActive (true);
 		// Vector3 nextLocation = mDoorLocations[mState];
-
 		foreach (Item item in mItems) {
 			if (item.itemGroupIndex == mState) {
 				item.Enable();
@@ -72,6 +79,7 @@ public class StateManager : MonoBehaviour {
 	}
 
 	public void ActivateNextCard() {
+		mPortalObject.SetActive (false);
 		++mState;
 		// reached last state in the game
 		if (mState >= mCards.Length) {
