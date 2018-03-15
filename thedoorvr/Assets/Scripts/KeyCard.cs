@@ -23,9 +23,7 @@ public class KeyCard : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (bNeeded && gameObject.transform.position.y < 0.55f) { // global position
-			ResetLocation();
-		}
+
 	}
 
 	public void Enable () {
@@ -51,6 +49,6 @@ public class KeyCard : MonoBehaviour {
 	}
 
 	public void ResetLocation() {
-		gameObject.transform.position = resetPos;
+		// gameObject.transform.position = resetPos;
 	}
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 using VRTK;
 
+
+
 public class StateManager : MonoBehaviour {
 
 	public GameObject Mug;
@@ -20,6 +22,8 @@ public class StateManager : MonoBehaviour {
 	[SerializeField] private Transform[] mPortalTransforms;
 	[SerializeField] private Transform mCurrentPortalTransform;
 	[SerializeField] private GameObject mPortalObject;
+
+	[SerializeField] private HTC.UnityPlugin.StereoRendering.StereoRenderer mRenderer;
 
 
 	/// <summary>
@@ -68,6 +72,7 @@ public class StateManager : MonoBehaviour {
 
 	public void ActivateRoom() {
 		mCurrentPortalTransform = mPortalTransforms [mState];
+		mRenderer.anchorTransform = mCurrentPortalTransform;
 		mPortalObject.SetActive (true);
 		// Vector3 nextLocation = mDoorLocations[mState];
 		foreach (Item item in mItems) {

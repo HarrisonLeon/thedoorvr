@@ -35,6 +35,6 @@ public class Item : MonoBehaviour {
 	}
 
 	public void ResetPos() {
-		gameObject.transform.position = myResetPos;
+		// gameObject.transform.position = myResetPos;
 	}
 }
